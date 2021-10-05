@@ -1,6 +1,6 @@
 class Person
-  def initialize(name: 'Unknown', age:, parent_permission: true)
-    @id
+  def initialize(age:, name: 'Unknown', parent_permission: true)
+    @id = nil
     @name = name
     @age = age
     @parent_permission = parent_permission
@@ -15,7 +15,7 @@ class Person
 
   private
 
-  def is_of_age?
-    self.age >= 18
+  def of_age?
+    age >= 18
   end
 end
