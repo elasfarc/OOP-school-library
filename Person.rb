@@ -3,13 +3,19 @@ class Person
     @id
     @name = name
     @age = age
+    @parent_permission = parent_permission
   end
 
   attr_reader :id
   attr_accessor :name, :age
 
-  private_class_method :is_of_age
+  def can_use_services?
+    is_of_age? || @parent_permission
+  end
+
+  private
   def is_of_age?
     self.age >= 18 
-  end
+  end 
 end
+
