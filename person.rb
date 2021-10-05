@@ -1,6 +1,6 @@
 class Person
   def initialize(age:, name: 'Unknown', parent_permission: true)
-    @id = nil
+    @id = rand()
     @name = name
     @age = age
     @parent_permission = parent_permission
@@ -10,7 +10,7 @@ class Person
   attr_accessor :name, :age
 
   def can_use_services?
-    is_of_age? || @parent_permission
+    of_age? || @parent_permission
   end
 
   private
