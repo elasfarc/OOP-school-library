@@ -1,7 +1,7 @@
 require_relative './corrector'
 
 class Person
-  attr_reader :rentals
+  attr_reader :rentals, :id
 
   def initialize(age:, name: 'Unknown', parent_permission: true)
     @id = rand
@@ -11,8 +11,6 @@ class Person
     @corrector = Corrector.new
     @rentals = []
   end
-
-  attr_reader :id
   attr_accessor :name, :age
 
   def can_use_services?
