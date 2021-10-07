@@ -1,12 +1,15 @@
 require_relative './corrector'
 
 class Person
+  attr_reader :rentals
+
   def initialize(age:, name: 'Unknown', parent_permission: true)
     @id = rand
     @name = name
     @age = age
     @parent_permission = parent_permission
     @corrector = Corrector.new
+    @rentals = []
   end
 
   attr_reader :id
