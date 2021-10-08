@@ -62,7 +62,7 @@ class App
     puts 'Date'
     date = gets.chomp
     Rental.new(date: date, person: person, book: book)
-    puts "\n ****rental creaded!*****"
+    puts "\n ****rental creaded!***** \n"
   end
 
   def list_person_rentals(id)
@@ -111,4 +111,3 @@ class App
     end
   end
 end
-
