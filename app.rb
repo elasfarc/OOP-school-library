@@ -1,6 +1,7 @@
 require_relative './book'
 require_relative './student'
 require_relative './teacher'
+require_relative './rental'
 
 class App
   attr_reader :state
@@ -29,5 +30,12 @@ class App
   def add_teacher(age:, specialize:, name: 'Unknown', parent_permission: true)
     @state[:teachers] << Teacher.new(age: age, specialize: specialize, name: name,
                                      parent_permission: parent_permission)
+  end
+
+  def list_person_rentals(id)
+    people = @state[:students] + @state[:teachers]
+    return 'Invalid ID, check again!' unless people.any? { |person| person.id == id }
+
+    (people.find { |person| person.id == id }).rentals
   end
 end
