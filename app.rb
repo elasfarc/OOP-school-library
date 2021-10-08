@@ -24,7 +24,6 @@ class App
   end
 
   def add_student(age:, classroom:, name: 'Unknown', parent_permission: true)
-    pp 'about to add '
     @state[:students] << Student.new(age: age, classroom: classroom, name: name, parent_permission: parent_permission)
   end
 
@@ -52,17 +51,21 @@ class App
   end
 
   def adding_rental_helper
+    people = @state[:students] + @state[:teachers]
+    books = @state[:books]
+    return 'no enough data' if books.length.zero? || people.length.zero?
+
     puts 'Select a book from the following list by a number'
     list_books.each_with_index { |book, i| puts "#{i}) #{book}" }
-    book = @state[:books][gets.chomp.to_i]
+    book = books[gets.chomp.to_i]
     puts 'Select a person from the following list by a number (not ID) '
     list_people.each_with_index { |person, i| puts "#{i}) #{person}" }
-    people = @state[:students] + @state[:teachers]
+
     person = people[gets.chomp.to_i]
     puts 'Date'
     date = gets.chomp
     Rental.new(date: date, person: person, book: book)
-    puts "\n ****rental creaded!***** \n"
+    return "\n ****rental creaded!***** \n"
   end
 
   def list_person_rentals(id)
@@ -99,10 +102,10 @@ class App
       when 4
         add_book(collect_data(:book))
       when 5
-        adding_rental_helper
+        puts adding_rental_helper
       when 6
         print 'ID of the person: '
-        list_person_rentals(gets.chomp.to_i)
+        puts list_person_rentals(gets.chomp.to_i)
       when 7
         running = false
       else
