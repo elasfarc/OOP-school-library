@@ -1,4 +1,4 @@
-require_relative './student'
+require_relative './book'
 
 class App
   attr_reader :state
@@ -15,13 +15,8 @@ class App
   def list_books
     @state[:books].map { |book| "Title: #{book.title}, Author: #{book.author}" }
   end
+
+  def add_book(title:, author:)
+    @state[:books] << Book.new(title: title, author: author)
+  end
 end
-
-# x = App.new
-# # pp x.state[:students]
-
-# student1 = Student.new(age: 12, classroom: 'x', name: 'Al', parent_permission: true)
-# puts student1
-# # x.state[:students] << student1
-
-# # puts x.list_people
