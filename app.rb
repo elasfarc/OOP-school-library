@@ -1,4 +1,6 @@
 require_relative './book'
+require_relative './student'
+require_relative './teacher'
 
 class App
   attr_reader :state
@@ -18,5 +20,14 @@ class App
 
   def add_book(title:, author:)
     @state[:books] << Book.new(title: title, author: author)
+  end
+
+  def add_student(age:, classroom:, name: 'Unknown', parent_permission: true)
+    @state[:students] << Student.new(age: age, classroom: classroom, name: name, parent_permission: parent_permission)
+  end
+
+  def add_teacher(age:, specialize:, name: 'Unknown', parent_permission: true)
+    @state[:teachers] << Teacher.new(age: age, specialize: specialize, name: name,
+                                     parent_permission: parent_permission)
   end
 end

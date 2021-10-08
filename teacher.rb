@@ -10,6 +10,3 @@ class Teacher < Person
     true
   end
 end
-
-pp x = Teacher.new(age: 5, specialization: 'X', name: 'ali')
-pp x.can_use_services?
