@@ -10,6 +10,8 @@ class App
     @state = { students: [], teachers: [], books: [] }
   end
 
+  # rubocop:disable Metrics/MethodLength
+  # rubocop:disable Metrics/CyclomaticComplexity
   def run
     puts 'Welcome to School Library App!'
     running = true
@@ -37,6 +39,8 @@ class App
       end
     end
   end
+  # rubocop:enable Metrics/MethodLength
+  # rubocop:enable Metrics/CyclomaticComplexity
 
   private
 
