@@ -10,6 +10,36 @@ class App
     @state = { students: [], teachers: [], books: [] }
   end
 
+  def run
+    puts 'Welcome to School Library App!'
+    running = true
+    while running
+      app_ui
+      user_selection = gets.chomp.to_i
+      case user_selection
+      when 1
+        puts list_books
+      when 2
+        puts list_people
+      when 3
+        add_person
+      when 4
+        add_book(collect_data(:book))
+      when 5
+        puts adding_rental_helper
+      when 6
+        print 'ID of the person: '
+        puts list_person_rentals(gets.chomp.to_i)
+      when 7
+        running = false
+      else
+        puts 'Invalid selection, try again!'
+      end
+    end
+  end
+
+  private
+
   def list_people
     people = @state[:students] + @state[:teachers]
     people.map { |person| "[#{person.class}] Name: #{person.name}, ID: #{person.id}, Age: #{person.age} " }
@@ -65,7 +95,7 @@ class App
     puts 'Date'
     date = gets.chomp
     Rental.new(date: date, person: person, book: book)
-    return "\n ****rental creaded!***** \n"
+    "\n ****rental creaded!***** \n"
   end
 
   def list_person_rentals(id)
@@ -84,33 +114,5 @@ class App
     puts '5 - create a rental'
     puts '6 - List all rentals for a given person id'
     puts '7 - Exit'
-  end
-
-  def run
-    puts 'Welcome to School Library App!'
-    running = true
-    while running
-      app_ui
-      user_selection = gets.chomp.to_i
-      case user_selection
-      when 1
-        puts list_books
-      when 2
-        puts list_people
-      when 3
-        add_person
-      when 4
-        add_book(collect_data(:book))
-      when 5
-        puts adding_rental_helper
-      when 6
-        print 'ID of the person: '
-        puts list_person_rentals(gets.chomp.to_i)
-      when 7
-        running = false
-      else
-        puts 'Invalid selection, try again!'
-      end
-    end
   end
 end
