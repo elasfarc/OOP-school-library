@@ -108,7 +108,8 @@ class App
     people = @state[:students] + @state[:teachers]
     return 'Invalid ID, check again!' unless people.any? { |person| person.id == id }
 
-    (people.find { |person| person.id == id }).rentals
+    person_rentals = (people.find { |person| person.id == id }).rentals
+    person_rentals.map { |rental| ["Date: #{rental.date}, Book: #{rental.book.title} by: #{rental.book.author} "] }
   end
 
   def app_ui
