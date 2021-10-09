@@ -24,9 +24,9 @@ class App
       when 2
         puts list_people
       when 3
-        add_person
+        puts add_person
       when 4
-        add_book(collect_data(:book))
+        puts add_book(collect_data(:book))
       when 5
         puts adding_rental_helper
       when 6
@@ -55,6 +55,7 @@ class App
 
   def add_book(title:, author:)
     @state[:books] << Book.new(title: title, author: author)
+    "\n******* Book created successfully *******\n"
   end
 
   def add_student(age:, classroom:, name: 'Unknown', parent_permission: true)
@@ -82,6 +83,7 @@ class App
   def add_person
     print 'Do you want to create a student(1) or a teacher (2) '
     gets.chomp == '1' ? add_student(collect_data(:student)) : add_teacher(collect_data(:teacher))
+    "\n******* Person created successfully *******\n"
   end
 
   def adding_rental_helper
