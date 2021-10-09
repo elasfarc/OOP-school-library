@@ -74,10 +74,25 @@ class App
 
     args = {}
     req_data[selection].each do |prop|
-      print "#{prop}: "
-      args[prop.to_sym] = gets.chomp
+      if prop == 'parent_permission'
+        args[prop.to_sym] = collect_parent_permission
+      else
+        print "#{prop}: "
+        args[prop.to_sym] = gets.chomp
+      end
     end
     args
+  end
+
+  def collect_parent_permission
+    print 'Has parent premission? [Y/N]'
+    selection = gets.chomp
+
+    until %w[y Y n N].any? { |answer| answer == selection }
+      puts 'try again'
+      selection = gets.chomp
+    end
+    %w[Y y].any? { |answer| answer == selection }
   end
 
   def add_person
